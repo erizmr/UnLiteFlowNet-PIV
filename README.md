@@ -7,6 +7,12 @@ A neural network which is able to infer the ﬂow velocity ﬁeld for shallow wa
   <img src="https://user-images.githubusercontent.com/33411325/64025420-8e70b600-cb34-11e9-9545-1f279c2a12a1.png" width="619" height="420"><br>
 </p>
 
+## Network structure
+
+
+## Dataset
+
+ref:
 
 ## Sample results
 
