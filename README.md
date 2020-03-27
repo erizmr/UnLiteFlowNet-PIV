@@ -3,11 +3,11 @@
 ## Introduction
 We present the first work using un-supervised learning approach for PIV problems. The proposed approachis inspired by classic optical flow method. Instead of using ground truth,we make use of photometric loss between two consecutive frames, con-sistency loss of bidirectional flow estimates and spatial smoothness lossamong the estimates to construct the loss function. The approach showsgreat potential and advantages on fluid flow estimations. It outputs com-petitive results to classic as well as supervised learning methods on PIVdataset, and even outperforms them on some difficult flow metrics.
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/33411325/64025420-8e70b600-cb34-11e9-9545-1f279c2a12a1.png" width="619" height="420"><br>
-</p>
+## Unsupervised Loss
 
-## Network structure
+<p align="center">
+  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/network.png" ><br>
+</p>
 
 
 ## Dataset
