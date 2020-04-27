@@ -13,11 +13,11 @@ Particle Image Velocimetry (PIV) is a classical flow estimation problem which is
 ## Sample results
 - Samples from PIV dataset
 <p align="center">
-  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/backstep_385.png" ><br>
+  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/backstep_385_un.png" ><br>
 </p>
 
 <p align="center">
-  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/SQG_1385.png" ><br>
+  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/SQG_1385_un.png" ><br>
 </p>
 
 
