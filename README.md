@@ -11,14 +11,19 @@ Particle Image Velocimetry (PIV) is a classical flow estimation problem which is
 
 
 ## Sample results
-- Samples from PIV dataset
+#### Samples from PIV dataset
+
+- Backstep flow
+
 <p align="center">
   <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/backstep_Re1000_00386.gif" />
-  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/backstep_385_un.png" width="60%" height="60%"/><br>
+  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/backstep_385_un.png" width="62%" height="62%"/><br>
 </p>
 
-<p align="left">
-  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/SQG_01386.gif" >
+- Surface Quasi Geostrophic (SQG) flow
+
+<p align="center">
+  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/SQG_01386.gif" />
   <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/SQG_1385_un.png" width="62%" height="62%"/><br>
 </p>
 
