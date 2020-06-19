@@ -7,36 +7,37 @@ Particle Image Velocimetry (PIV) is a classical flow estimation problem which is
 ## Unsupervised Loss
 
 <p align="center">
-  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/network.png" ><br>
+  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/network.png" width="80%" height="80%"><br>
 </p>
 
 
 ## Sample results
-#### Samples from PIV dataset
+#### Syethetic data: samples from PIV dataset
 
 - Backstep flow
 
 <p align="center">
-  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/backstep_Re1000_00386.gif" />
-  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/backstep_385_un.png" width="60%" height="60%"/><br>
+  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/backstep_Re1000_00386.gif" width="24.5%" height="24.5%" />
+  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/backstep_385_un.png" width="50%" height="50%"/><br>
 </p>
 
 - Surface Quasi Geostrophic (SQG) flow
 
 <p align="center">
-  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/SQG_01386.gif" />
-  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/SQG_1385_un.png" width="61%" height="61%"/><br>
+  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/SQG_01386.gif" width="24.5%" height="24.5%" />
+  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/SQG_1385_un.png" width="51%" height="51%"/><br>
 </p>
 
 
-#### Particle Images from [PIV challenge](http://www.pivchallenge.org/)
+#### Real experimental data: particle Images from [PIV challenge](http://www.pivchallenge.org/)
 
 - Jet Flow
 
 <p align="center">
-  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/jet_flow.gif" width="31%" height="31%" />
-  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/jet_flow_vel.gif" width="31%" height="31%"/><br>
+  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/jetflow_1.gif" width="85%" height="85%" /><br>
+  <em>From left to right: Particle images, UnLiteFlowNet-PIV output, PIV-LiteNetFlow output</em>
 </p>
+
 
 
 ## Dataset
@@ -44,11 +45,13 @@ The dataset used in this work is obtained from the work below:
 
 - [PIV dataset](https://doi.org/10.1007/s00348-019-2717-2)(9GB)
 ```
-Shengze Cai, Shichao Zhou, Chao Xu, Qi Gao. Dense motion estimation of particle images via a convolutional neural network, Exp Fluids, 2019
+Shengze Cai, Shichao Zhou, Chao Xu, Qi Gao. 
+Dense motion estimation of particle images via a convolutional neural network, Exp Fluids, 2019
 ```
 - [JHTDB](http://turbulence.pha.jhu.edu)
 ```
-Y. Li, E. Perlman, M. Wan, Y. Yang, R. Burns, C. Meneveau, R. Burns, S. Chen, A. Szalay & G. Eyink. A public turbulence database cluster and applications to study Lagrangian evolution of velocity increments in turbulence. Journal of Turbulence 9, No. 31, 2008.
+Y. Li, E. Perlman, M. Wan, Y. Yang, R. Burns, C. Meneveau, R. Burns, S. Chen, A. Szalay & G. Eyink. 
+A public turbulence database cluster and applications to study Lagrangian evolution of velocity increments in turbulence. Journal of Turbulence 9, No. 31, 2008.
 ```
 
 ## Installation instructions
@@ -60,5 +63,3 @@ Y. Li, E. Perlman, M. Wan, Y. Yang, R. Burns, C. Meneveau, R. Burns, S. Chen, A.
 ## Dependencies
 
 
-## License
-This software and documentation
