@@ -56,6 +56,14 @@ A public turbulence database cluster and applications to study Lagrangian evolut
 
 ## Installation instructions
 
+- livelossplot
+
+- flowiz
+
+  pip install flowiz -U
+  
+- GPUtil
+
 
 ## Run test cases
 
