@@ -39,11 +39,10 @@ Particle Image Velocimetry (PIV) is a classical flow estimation problem which is
 </p>
 
 
-
 ## Dataset
 The dataset used in this work is obtained from the work below:
 
-- [PIV dataset](https://doi.org/10.1007/s00348-019-2717-2)(9GB)
+- [PIV dataset](https://doi.org/10.1007/s00348-019-2717-2) (9GB)
 ```
 Shengze Cai, Shichao Zhou, Chao Xu, Qi Gao. 
 Dense motion estimation of particle images via a convolutional neural network, Exp Fluids, 2019
@@ -54,20 +53,36 @@ Y. Li, E. Perlman, M. Wan, Y. Yang, R. Burns, C. Meneveau, R. Burns, S. Chen, A.
 A public turbulence database cluster and applications to study Lagrangian evolution of velocity increments in turbulence. Journal of Turbulence 9, No. 31, 2008.
 ```
 
-## Installation instructions
+## Prerequisite
+
+- cuda (v10.1)
+
+- pytorch (v1.5.0)
+
+- sklearn (v0.22.2)
 
 - livelossplot
 
+  ```pip install livelossplot```
+
 - flowiz
 
-  pip install flowiz -U
+  Library to visualize .flo files
+  
+  ```pip install flowiz -U```
   
 - GPUtil
 
+  ```pip install GPUtil```
 
-## Run test cases
+## Train
 
+Underconstruction
 
-## Dependencies
+## Test
+
+Underconstruction
+
+## Citation
 
 
