@@ -4,13 +4,6 @@ This repository contains materials for ISC workshop paper Unsupervised learning 
 ## Introduction
 Particle Image Velocimetry (PIV) is a classical flow estimation problem which is widely considered and utilised, especially as a diagnostic tool in experimental fluid dynamics and the remote sensing of environmental flows. We present here what we believe to be the first work which takes an unsupervised learning based approach to tackle PIV problems. The proposed approach is inspired by classic optical flow methods. Instead of using ground truth data, we make use of photometric loss between two consecutive image frames, consistency loss in bidirectional flow estimates and spatial smoothness loss to construct the total unsupervised loss function. The approach shows significant potential and advantages for fluid flow estimation. Results presented here demonstrate that is outputs competitive results compared with classical PIV methods as well as supervised learning based methods for a broad PIV dataset, and even outperforms these existing approaches in some difficult flow cases.
 
-## Unsupervised Loss
-
-<p align="center">
-  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/network.png" width="80%" height="80%"><br>
-</p>
-
-
 ## Sample results
 #### Syethetic data: samples from PIV dataset
 
@@ -47,6 +40,11 @@ Particle Image Velocimetry (PIV) is a classical flow estimation problem which is
   <em>From left to right: Particle images, UnLiteFlowNet-PIV(trained by full integrated loss) output, PIV-LiteNetFlow output</em>
 </p>
 
+## Unsupervised Loss
+
+<p align="center">
+  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/network.png" width="80%" height="80%"><br>
+</p>
 
 ## Dataset
 The dataset used in this work is obtained from the work below:
