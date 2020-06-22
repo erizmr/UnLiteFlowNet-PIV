@@ -82,6 +82,8 @@ To train from scratch:
 
     ```python main.py --train```
 
+3. Trained model will be saved in the same folder. (A checkpoint is generated every 5 epochs in default during training)
+
 ## Trained model
 The trained model ```UnsupervisedLiteFlowNet_pretrained.pt``` is available in the folder ```models```.
 
