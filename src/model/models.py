@@ -2,7 +2,7 @@
     This file is apdated from https://github.com/sniklaus/pytorch-liteflownet
 """
 
-from .correlation import *
+from src.model.correlation import *
 import math
 Backward_tensorGrid = {}
 

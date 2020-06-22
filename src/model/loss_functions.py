@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from models import Backward, device
+from src.model.models import Backward, device
 
 
 def multiscaleUnsupervisorError(tensorFlowForward,

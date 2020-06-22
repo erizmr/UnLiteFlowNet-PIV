@@ -1,7 +1,7 @@
 import glob
 import json
 from sklearn.model_selection import ShuffleSplit
-from .custom_dataset import *
+from src.data_processing.custom_dataset import *
 
 
 def read_all(data_path):
