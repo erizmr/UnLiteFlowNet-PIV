@@ -73,13 +73,25 @@ A public turbulence database cluster and applications to study Lagrangian evolut
 
   ```pip install GPUtil```
 
-## Train
+## Training
+To train from scratch:
 
-Underconstruction
+1. Download the PIV dataset, remove the current data in the folder ```sample_data``` and extract new data into it.
 
-## Test
+2. Run the scripts with ```--train``` argument:
 
-Underconstruction
+  ```python main.py --train```
+
+## Trained model
+The trained model ```UnsupervisedLiteFlowNet_pretrained.pt``` is available in the folder ```models```.
+
+## Testing
+The data samples for test use are in the folder ```sample_data```.
+
+Test and visualize the sample data results with the pretrained model using:
+
+```python main.py --test```
+
 
 ## Citation
 
