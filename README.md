@@ -80,7 +80,7 @@ To train from scratch:
 
 2. Run the scripts with ```--train``` argument:
 
-  ```python main.py --train```
+    ```python main.py --train```
 
 ## Trained model
 The trained model ```UnsupervisedLiteFlowNet_pretrained.pt``` is available in the folder ```models```.
