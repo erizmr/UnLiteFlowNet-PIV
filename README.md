@@ -30,10 +30,6 @@ Particle Image Velocimetry (PIV) is a classical flow estimation problem which is
   <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/jetflow_1.gif" width="85%" height="85%" /><br>
   <em>From left to right: Particle images, UnLiteFlowNet-PIV(trained by photometric loss only) output, PIV-LiteNetFlow output</em>
 </p>
-<p align="center">
-  <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/jet_flow_s2_arrow.gif" width="85%" height="85%" /><br>
-  <em>From left to right: Particle images, UnLiteFlowNet-PIV(trained by full integrated loss) output, PIV-LiteNetFlow output</em>
-</p>
 
 <p align="center">
   <img src="https://github.com/erizmr/UnLiteFlowNet-PIV/blob/master/images/results/jet_flow4_s2_arrow.gif" width="85%" height="85%" /><br>
