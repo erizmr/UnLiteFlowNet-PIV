@@ -20,28 +20,20 @@ def test_train():
         data_path)
 
     print([f_dir for f_dir in flow_dir])
-    print([len(f_dir) for f_dir in flow_img1_name_list])
-    print([len(f_dir) for f_dir in flow_img2_name_list])
-    print([len(f_dir) for f_dir in flow_gt_name_list])
+    img1_len = [len(f_dir) for f_dir in flow_img1_name_list]
+    img2_len = [len(f_dir) for f_dir in flow_img2_name_list]
+    gt_len = [len(f_dir) for f_dir in flow_gt_name_list]
 
-    print(len(gt_name_list))
-    print(len(img1_name_list))
-    print(len(img2_name_list))
+    for img1_num, img2_num in zip(img1_len, img2_len):
+        assert img1_num == img2_num
+    for img1_num, gt_num in zip(img1_len, gt_len):
+        assert img1_num == gt_num
 
     train_dataset, validate_dataset, test_dataset = construct_dataset(
         img1_name_list, img2_name_list, gt_name_list)
 
-    flow_dataset = {}
-    for i, f_name in enumerate(flow_dir):
-        total_index = np.arange(0, len(flow_img1_name_list[i]), 1)
-        flow_dataset[f_name] = FlowDataset(
-            total_index, [flow_img1_name_list[i], flow_img2_name_list[i]],
-            targets_index_list=total_index,
-            targets=flow_gt_name_list[i])
-
-    seed = 22
+    # Set hyperparameters
     lr = 1e-4
-    momentum = 0.5
     batch_size = 8
     test_batch_size = 8
     n_epochs = 100
@@ -55,6 +47,9 @@ def test_train():
                                  eps=1e-3,
                                  amsgrad=True)
 
+    torch.backends.cudnn.benchmark = True
+    torch.backends.cudnn.enabled = True
+
     if new_train:
         # New train
         model_trained = train_model(model, train_dataset, validate_dataset,
@@ -63,7 +58,6 @@ def test_train():
     else:
         model_save_name = 'UnsupervisedLiteFlowNet_pretrained.pt'
         PATH = F"./models/{model_save_name}"
-
         checkpoint = torch.load(PATH)
         model.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
@@ -84,11 +78,21 @@ def test_train():
 
 
 def test_estimate():
-    # Test
-    img1_name_list = json.load(open("./sample_data/img1_name_list.json", 'r'))
-    img2_name_list = json.load(open("./sample_data/img2_name_list.json", 'r'))
-    test_dataset = FlowDataset([x for x in range(len(img1_name_list))],
-                               [img1_name_list, img2_name_list])
+
+    flow_img1_name_list, flow_img2_name_list, flow_gt_name_list, flow_dir = read_by_type(
+        data_path)
+    assert len(flow_dir) == len(flow_img1_name_list)
+    flow_dataset = {}
+
+    for i, f_name in enumerate(flow_dir):
+        total_index = np.arange(0, len(flow_img1_name_list[i]), 1)
+        flow_dataset[f_name] = FlowDataset(
+            total_index, [flow_img1_name_list[i], flow_img2_name_list[i]],
+            targets_index_list=total_index,
+            targets=flow_gt_name_list[i])
+
+    flow_type = [f_dir for f_dir in flow_dir]
+    print("Flow cases: ", flow_type)
 
     # Load pretrained model
     model_save_name = 'UnsupervisedLiteFlowNet_pretrained.pt'
@@ -99,15 +103,19 @@ def test_estimate():
     unliteflownet.to(device)
     print('unliteflownet load successfully.')
 
-    # Visualize results
+    # Visualize results, random select a flow type
+    f_type = random.randint(0, len(flow_type) - 1)
+    print("Selected flow scenario: ", flow_type[f_type])
+    test_dataset = flow_dataset[flow_type[f_type]]
     test_dataset.eval()
 
     resize = False
     save_to_disk = False
 
+    # random select a sample
     number_total = len(test_dataset)
     number = random.randint(0, number_total - 1)
-    input_data = test_dataset[number][0]
+    input_data, label_data = test_dataset[number]
     h_origin, w_origin = input_data.shape[-2], input_data.shape[-1]
 
     if resize:
@@ -115,7 +123,9 @@ def test_estimate():
                                    (256, 256),
                                    mode='bilinear',
                                    align_corners=False)
-    label_data = test_dataset[number][1]
+    else:
+        input_data = input_data.view(-1, 2, 256, 256)
+
     h, w = input_data.shape[-2], input_data.shape[-1]
     x1 = input_data[:, 0, ...].view(-1, 1, h, w)
     x2 = input_data[:, 1, ...].view(-1, 1, h, w)
@@ -136,32 +146,36 @@ def test_estimate():
     color_data_pre = np.concatenate((u.view(h, w, 1), v.view(h, w, 1)), 2)
     u = u.numpy()
     v = v.numpy()
-
-    mappable1 = axarr[1].imshow(fz.convert_from_flow(color_data_pre))
-    X = np.arange(0, h, 4)
-    Y = np.arange(0, w, 4)
+    # Draw velocity magnitude
+    axarr[1].imshow(fz.convert_from_flow(color_data_pre))
+    # Control arrow density
+    X = np.arange(0, h, 8)
+    Y = np.arange(0, w, 8)
     xx, yy = np.meshgrid(X, Y)
     U = u[xx.T, yy.T]
     V = v[xx.T, yy.T]
+    # Draw velocity direction
     axarr[1].quiver(yy.T, xx.T, U, -V)
     axarr[1].axis('off')
     color_data_pre_unliteflownet = color_data_pre
 
-    # ---------Label data-------------
+    # ---------------Label data------------------
     u = label_data[0].detach()
     v = label_data[1].detach()
 
     color_data_label = np.concatenate((u.view(h, w, 1), v.view(h, w, 1)), 2)
     u = u.numpy()
     v = v.numpy()
-    axarr[0].imshow(x1[0][0], cmap='gray')
-    mappable1 = axarr[0].imshow(fz.convert_from_flow(color_data_label))
+    # Draw velocity magnitude
+    axarr[0].imshow(fz.convert_from_flow(color_data_label))
+    # Control arrow density
     X = np.arange(0, h, 8)
     Y = np.arange(0, w, 8)
     xx, yy = np.meshgrid(X, Y)
     U = u[xx.T, yy.T]
     V = v[xx.T, yy.T]
-    # Draw quiver
+
+    # Draw velocity direction
     axarr[0].quiver(yy.T, xx.T, U, -V)
     axarr[0].axis('off')
     color_data_pre_label = color_data_pre

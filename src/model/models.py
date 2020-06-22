@@ -1,8 +1,8 @@
 """
     This file is apdated from https://github.com/sniklaus/pytorch-liteflownet
 """
-
-from src.model.correlation import *
+import torch
+import src.model.correlation as correlation
 import math
 Backward_tensorGrid = {}
 

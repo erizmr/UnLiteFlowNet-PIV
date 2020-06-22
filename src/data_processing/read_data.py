@@ -41,12 +41,12 @@ def read_all(data_path):
 def read_by_type(data_path):
     # Read the data by flow type
     data_dir = glob.glob(data_path + "/*[!json]")
-    flow_dir = [dir.split('/')[-1] for dir in data_dir]
     flow_img1_name_list = []
     flow_img2_name_list = []
     flow_gt_name_list = []
 
     try:
+        flow_dir = [dir.split('/')[-1] for dir in data_dir]
         for f_dir in flow_dir:
             flow_img1_name_list.append(
                 json.load(
@@ -61,31 +61,48 @@ def read_by_type(data_path):
                     open(data_path + "/" + f_dir + "_gt_name_list.json", 'r')))
 
     except:
+        flow_dir = []
+        flow_img1_name_list = []
+        flow_img2_name_list = []
+        flow_gt_name_list = []
         for dir in data_dir:
-            flow_gt_name_list.extend(glob.glob(dir + '/*flow.flo'))
-            flow_img1_name_list.extend(glob.glob(dir + '/*img1.tif'))
-            flow_img2_name_list.extend(glob.glob(dir + '/*img2.tif'))
-            assert (len(flow_gt_name_list) == len(flow_img1_name_list))
-            assert (len(flow_img2_name_list) == len(flow_img1_name_list))
-            flow_gt_name_list.sort()
-            flow_img1_name_list.sort()
-            flow_img2_name_list.sort()
+            # Initialize for different flow type
+            sub_flow_img1_name_list = []
+            sub_flow_img2_name_list = []
+            sub_flow_gt_name_list = []
+            sub_flow_gt_name_list.extend(glob.glob(dir + '/*flow.flo'))
+            sub_flow_img1_name_list.extend(glob.glob(dir + '/*img1.tif'))
+            sub_flow_img2_name_list.extend(glob.glob(dir + '/*img2.tif'))
+            assert (len(sub_flow_gt_name_list) == len(sub_flow_img1_name_list))
+            assert (
+                len(sub_flow_img2_name_list) == len(sub_flow_img1_name_list))
+            sub_flow_gt_name_list.sort()
+            sub_flow_img1_name_list.sort()
+            sub_flow_img2_name_list.sort()
+
             # Serialize data into file:
             json.dump(
-                flow_img1_name_list,
+                sub_flow_img1_name_list,
                 open(
                     data_path + "/" + dir.split('/')[-1] +
                     "_img1_name_list.json", 'w'))
             json.dump(
-                flow_img2_name_list,
+                sub_flow_img2_name_list,
                 open(
                     data_path + "/" + dir.split('/')[-1] +
                     "_img2_name_list.json", 'w'))
             json.dump(
-                flow_gt_name_list,
+                sub_flow_gt_name_list,
                 open(
                     data_path + "/" + dir.split('/')[-1] +
                     "_gt_name_list.json", 'w'))
+
+            # Add to the total list
+            flow_dir.append(dir.split('/')[-1])
+            flow_img1_name_list.append(sub_flow_img1_name_list)
+            flow_img2_name_list.append(sub_flow_img2_name_list)
+            flow_gt_name_list.append(sub_flow_gt_name_list)
+
     return flow_img1_name_list, flow_img2_name_list, flow_gt_name_list, flow_dir
 
 
