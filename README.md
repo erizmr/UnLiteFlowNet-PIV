@@ -1,5 +1,5 @@
 # Unsupervised learning of Particle Image Velocimetry
-This repository contains materials for ISC 2020 workshop paper Unsupervised learning of Particle Image Velocimetry.
+This repository contains materials for ISC 2020 workshop paper [Unsupervised learning of Particle Image Velocimetry](https://arxiv.org/pdf/2007.14487.pdf).
 
 ## Introduction
 Particle Image Velocimetry (PIV) is a classical flow estimation problem which is widely considered and utilised, especially as a diagnostic tool in experimental fluid dynamics and the remote sensing of environmental flows. We present here what we believe to be the first work which takes an unsupervised learning based approach to tackle PIV problems. The proposed approach is inspired by classic optical flow methods. Instead of using ground truth data, we make use of photometric loss between two consecutive image frames, consistency loss in bidirectional flow estimates and spatial smoothness loss to construct the total unsupervised loss function. The approach shows significant potential and advantages for fluid flow estimation. Results presented here demonstrate that is outputs competitive results compared with classical PIV methods as well as supervised learning based methods for a broad PIV dataset, and even outperforms these existing approaches in some difficult flow cases.
@@ -97,4 +97,13 @@ Test and visualize the sample data results with the pretrained model using:
 
 ## Citation
 
+In BibTeX format:
+```
+@article{zhang2020unsupervised,
+  title={Unsupervised Learning of Particle Image Velocimetry},
+  author={Mingrui Zhang and Matthew D. Piggott},
+  journal={arXiv preprint arXiv:2007.14487},
+  year={2020}
+}
+```
 
